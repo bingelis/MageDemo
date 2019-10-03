@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <attribute name="class" value="page-products" />
         <referenceContainer name="content">
             <block class="MageDemo\FeaturedProducts\Block\Product\Listing"
                    name="featured_products.list"
                    as="product_list"
-                   template="Magento_Catalog::product/list.phtml">
+                   template="MageDemo_FeaturedProducts::product/listing.phtml">
             </block>
         </referenceContainer>
     </body>

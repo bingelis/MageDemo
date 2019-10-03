@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * Featured products listing template to implement grid format - 4 products per row.
+ *
+ * @see Magento_Catalog::product/list.phtml
+ * @codingStandardsIgnoreFile
+ */
+?>
+<?php /** @var \MageDemo\FeaturedProducts\Block\Product\Listing $block */ ?>
+<?php if (!$block->getLoadedProductCollection()->count()): ?>
+    <div class="message info empty"><div><?= __('We can\'t find any featured products.') ?></div></div>
+<?php else: ?>
+    <div class="products wrapper grid products-grid">
+        <ol class="products list items product-items">
+            <?php /** @var \Magento\Catalog\Model\Product $_product */ ?>
+            <?php foreach ($block->getLoadedProductCollection() as $_key => $_product): ?>
+                 <li class="item product product-item">
+                    <div class="product-item-info" data-container="product-grid">
+                        <a href="<?= $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                            <?= $block->getImage($_product, 'category_page_grid')->toHtml() ?>
+                        </a>
+                        <div class="product details product-item-details">
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link" href="<?= $_product->getProductUrl() ?>">
+                                    <?= $_product->getName() ?>
+                                </a>
+                            </strong>
+                            <?= $block->getReviewsSummaryHtml($_product, \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW) ?>
+                            <?= $block->getProductPrice($_product) ?>
+                            <?= $block->getProductDetailsHtml($_product) ?>
+                        </div>
+                    </div>
+                 </li>
+                 <?php if ($_key % 4 == 0): ?>
+                    <br />
+                 <?php endif; ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif; ?>
