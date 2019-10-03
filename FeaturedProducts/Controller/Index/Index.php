@@ -33,9 +33,6 @@ class Index extends Action
             throw new NotFoundException(__('Page not found.'));
         }
 
-        $page = $this->pageFactory->create();
-        $page->getConfig()->getTitle()->set($this->config->pageTitle());
-
-        return $page;
+        return $this->pageFactory->create();
     }
 }

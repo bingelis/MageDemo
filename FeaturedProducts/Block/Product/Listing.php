@@ -34,6 +34,12 @@ class Listing extends ListProduct
         $this->config = $config;
     }
 
+    protected function _prepareLayout()
+    {
+        $this->pageConfig->getTitle()->set($this->config->pageTitle());
+        return parent::_prepareLayout();
+    }
+
     protected function _getProductCollection()
     {
         $this->_productCollection = $this->collectionFactory->create()
